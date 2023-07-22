@@ -70,7 +70,7 @@ if response.status_code == 200:
     print("임시 테이블이 생성되었습니다.")
     # !데이터를 임시 테이블에 일괄 삽입
     page = 1  # 첫 페이지부터 시작
-    perPage = 1000  # 한 페이지에 500개씩 가져오도록 설정
+    perPage = 1000  # 한 페이지에 1000개씩 가져오도록 설정
     params['perPage'] = perPage
     while page * perPage <= total_counts + perPage:
         response = requests.get(url, params=params)
