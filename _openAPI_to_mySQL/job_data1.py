@@ -1,12 +1,12 @@
 import requests
 import json
 import mysql.connector
-
+# 미사용
 # !API 정보 (key 공유 금지)
 base_url = "api.odcloud.kr/api"
 swagger_url = "http://infuser.odcloud.kr/oas/docs?namespace=15050148/v1"
-encoding_key = "ctm9bmkb5bZpqmfsUtsWDw0Y%2BRoXTEqisc8%2F9CnC22X%2FIvwuzYrqKmrpzdigQ6g9TYQbdU8EZxQHOtFRVr85Gg%3D%3D"
-decoding_key = "ctm9bmkb5bZpqmfsUtsWDw0Y+RoXTEqisc8/9CnC22X/IvwuzYrqKmrpzdigQ6g9TYQbdU8EZxQHOtFRVr85Gg=="
+encoding_key = ""
+decoding_key = ""
 get = "/15050148/v1/uddi:abd1cfb1-5ba2-491f-9729-84bba214f87d"
 page = 1
 perPage = 1
@@ -49,17 +49,11 @@ if response.status_code == 200:
 
     # !테이블이 존재하지 않는 경우에만 테이블 생성
     if not existing_tables:
-        # 열 이름과 데이터 유형 추출
         columns = []
         for key in data['data'][0].keys():
-            # 간단히 VARCHAR(255)로 모든 열을 생성하도록 예시로 작성합니다.
             column = f'{key} VARCHAR(255)'
             columns.append(column)
-
-        # 테이블 생성 쿼리 생성
         create_table_query = f"CREATE TABLE {table_name} ({', '.join(columns)}, PRIMARY KEY (사업번호))"
-
-        # 테이블 생성 쿼리 실행
         cursor.execute(create_table_query)
         print("새로운 테이블이 생성되었습니다.")
 

@@ -9,11 +9,11 @@ import codecs
 sys.stdout = codecs.getwriter("utf-8")(sys.stdout.detach())
 print("content-type: text/html; charset=utf-8\n")
 
-# API 정보 (key 공유 금지)
+# !API 정보 (key 공유 금지)
 base_url = "api.odcloud.kr/api"
 swagger_url = "http://infuser.odcloud.kr/oas/docs?namespace=15050148/v1"
-encoding_key = "ctm9bmkb5bZpqmfsUtsWDw0Y%2BRoXTEqisc8%2F9CnC22X%2FIvwuzYrqKmrpzdigQ6g9TYQbdU8EZxQHOtFRVr85Gg%3D%3D"
-decoding_key = "ctm9bmkb5bZpqmfsUtsWDw0Y+RoXTEqisc8/9CnC22X/IvwuzYrqKmrpzdigQ6g9TYQbdU8EZxQHOtFRVr85Gg=="
+encoding_key = ""
+decoding_key = ""
 get = "/15050148/v1/uddi:abd1cfb1-5ba2-491f-9729-84bba214f87d"
 page = 1
 perPage = 1
