@@ -1,11 +1,11 @@
 import requests
 import mysql.connector
 import xml.etree.ElementTree as ET
-
+#사용
 # !API 정보 (key 공유 금지)
 url = 'http://apis.data.go.kr/B552474/SenuriService/getJobList'
-encoding_key = "ctm9bmkb5bZpqmfsUtsWDw0Y%2BRoXTEqisc8%2F9CnC22X%2FIvwuzYrqKmrpzdigQ6g9TYQbdU8EZxQHOtFRVr85Gg%3D%3D"
-decoding_key = "ctm9bmkb5bZpqmfsUtsWDw0Y+RoXTEqisc8/9CnC22X/IvwuzYrqKmrpzdigQ6g9TYQbdU8EZxQHOtFRVr85Gg=="
+encoding_key = ""
+decoding_key = ""
 params = {
     'serviceKey': decoding_key,
     'pageNo': 1,
@@ -17,10 +17,9 @@ if response.status_code == 200:
     # XML 출력
     xml_data = response.content.decode('utf-8')
     print(xml_data)
-    # Parse the XML data
     root = ET.fromstring(xml_data)
 
-    # Find and extract content within <totalCount> tags
+    # totalCount 구하기
     total_count_element = root.find(".//totalCount")
     total_count = int(total_count_element.text)
     # MySQL 데이터베이스에 연결
@@ -40,7 +39,6 @@ if response.status_code == 200:
 
     #! 테이블이 존재하지 않는 경우에만 테이블 생성
     if not existing_tables:
-        # 열 이름과 데이터 유형 추출
         columns = []
         tags = ['workPlcNm', 'toDd', 'resultCode', 'resultMsg', 'acptMthd',
                 'deadline', 'emplymShp', 'emplymShpNm', 'frDd', 'jobId',
@@ -62,7 +60,6 @@ if response.status_code == 200:
     xml_data = response.content.decode('utf-8')
     root = ET.fromstring(xml_data)
     for item in root.findall('.//item'):
-        # Prepare the data for insertion
         data_tags = [child.tag for child in item]
         data_values = [
             child.text if child.text else None for child in item]
